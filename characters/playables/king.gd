@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 const SPEED = 100.0
-const JUMP_VELOCITY = -220.0
+const JUMP_VELOCITY = -600.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -18,8 +18,9 @@ func _physics_process(delta):
 		velocity.y += gravity * delta
 
 	# Hanlders
-	handle_jump()
 	handle_run()
+	handle_jump()
+	handle_attack()
 
 	move_and_slide()
 	
@@ -42,5 +43,15 @@ func handle_run():
 		sprite.play("Idle")
 		
 func handle_jump():
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	if (Input.is_action_just_pressed("ui_accept") or Input.is_joy_button_pressed(0, JOY_BUTTON_A)) and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+	
+	if velocity.y < 0:
+		sprite.play("Jump")
+	elif velocity.y > 0:
+		sprite.play("Fall")
+		
+func handle_attack():
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) or Input.is_joy_button_pressed(0, JOY_BUTTON_X):
+		sprite.play("Attack")
+	

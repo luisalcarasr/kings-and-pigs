@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://mfiww5itj4xh"]
+[gd_scene load_steps=62 format=3 uid="uid://mfiww5itj4xh"]
 
 [ext_resource type="Script" path="res://characters/playables/king.gd" id="1_ub7gj"]
 [ext_resource type="Texture2D" uid="uid://6amji6dr52s3" path="res://assets/characters/playables/king-human/attack.png" id="1_uuvio"]
@@ -11,8 +11,10 @@
 [ext_resource type="Texture2D" uid="uid://di42agx7s5mm4" path="res://assets/characters/playables/king-human/hit.png" id="7_jvkgc"]
 [ext_resource type="Texture2D" uid="uid://dbbcqakmj4sjx" path="res://assets/characters/playables/king-human/jump.png" id="9_he4w1"]
 [ext_resource type="Texture2D" uid="uid://db4jxotmhthyt" path="res://assets/characters/playables/king-human/run.png" id="10_sbne7"]
+[ext_resource type="Texture2D" uid="uid://cswvpg84hs78v" path="res://assets/live-and-coins/live-bar.png" id="12_n4mud"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wwldo"]
+size = Vector2(19, 25)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nnpjl"]
 atlas = ExtResource("1_uuvio")
@@ -205,18 +207,18 @@ region = Rect2(546, 0, 78, 58)
 [sub_resource type="SpriteFrames" id="SpriteFrames_w4oca"]
 animations = [{
 "frames": [{
-"duration": 1.0,
+"duration": 2.0,
 "texture": SubResource("AtlasTexture_nnpjl")
 }, {
-"duration": 1.0,
+"duration": 2.0,
 "texture": SubResource("AtlasTexture_bhg3g")
 }, {
-"duration": 1.0,
+"duration": 2.0,
 "texture": SubResource("AtlasTexture_ta1bo")
 }],
 "loop": true,
 "name": &"Attack",
-"speed": 3.0
+"speed": 60.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -400,6 +402,7 @@ animations = [{
 script = ExtResource("1_ub7gj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(7.5, 2.5)
 shape = SubResource("RectangleShape2D_wwldo")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -413,3 +416,10 @@ limit_left = 0
 limit_top = 0
 limit_right = 854
 limit_bottom = 480
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Camera2D/CanvasLayer"]
+position = Vector2(82, 47)
+scale = Vector2(2, 2)
+texture = ExtResource("12_n4mud")

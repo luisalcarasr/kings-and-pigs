@@ -1,0 +1,100 @@
+[gd_scene load_steps=15 format=3 uid="uid://b06hie73rqpe0"]
+
+[ext_resource type="Texture2D" uid="uid://bnue3ms5h7kmw" path="res://assets/live-and-coins/small-heart-hit.png" id="1_uek5o"]
+[ext_resource type="Texture2D" uid="uid://dc7o65q61cvpp" path="res://assets/live-and-coins/small-heart-idle.png" id="2_njib0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u031w"]
+size = Vector2(8, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nmw83"]
+atlas = ExtResource("1_uek5o")
+region = Rect2(0, 0, 18, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hxqjf"]
+atlas = ExtResource("1_uek5o")
+region = Rect2(18, 0, 18, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_80mav"]
+atlas = ExtResource("2_njib0")
+region = Rect2(0, 0, 18, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y7yem"]
+atlas = ExtResource("2_njib0")
+region = Rect2(18, 0, 18, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ghfbp"]
+atlas = ExtResource("2_njib0")
+region = Rect2(36, 0, 18, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hfmnx"]
+atlas = ExtResource("2_njib0")
+region = Rect2(54, 0, 18, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_umeqb"]
+atlas = ExtResource("2_njib0")
+region = Rect2(72, 0, 18, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wrw43"]
+atlas = ExtResource("2_njib0")
+region = Rect2(90, 0, 18, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_14p5q"]
+atlas = ExtResource("2_njib0")
+region = Rect2(108, 0, 18, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v12js"]
+atlas = ExtResource("2_njib0")
+region = Rect2(126, 0, 18, 14)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fovv4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nmw83")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hxqjf")
+}],
+"loop": true,
+"name": &"Hit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_80mav")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y7yem")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ghfbp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hfmnx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_umeqb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wrw43")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_14p5q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v12js")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[node name="SmallHeart" type="RigidBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, 1.5)
+shape = SubResource("RectangleShape2D_u031w")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_fovv4")
+animation = &"Idle"
