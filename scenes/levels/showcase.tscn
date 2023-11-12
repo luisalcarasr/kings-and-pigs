@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://du2ecsug8qf8g"]
+[gd_scene load_steps=13 format=3 uid="uid://du2ecsug8qf8g"]
 
 [ext_resource type="TileSet" uid="uid://tsiisdn0i7wd" path="res://tilesets/terrain.tres" id="1_3y6ws"]
 [ext_resource type="PackedScene" uid="uid://mfiww5itj4xh" path="res://characters/playables/king.tscn" id="2_2t7p4"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://b06hie73rqpe0" path="res://objects/small-heart.tscn" id="9_7ok8h"]
 [ext_resource type="PackedScene" uid="uid://bvx6e6m3b5gml" path="res://objects/big-heart.tscn" id="10_n0n1o"]
 [ext_resource type="PackedScene" uid="uid://khgftfloj3jh" path="res://characters/enemies/pig.tscn" id="11_kiol3"]
+[ext_resource type="PackedScene" uid="uid://disnepd2l7hwi" path="res://characters/enemies/king-pig.tscn" id="12_0bt6i"]
 
 [node name="ShowcaseScene" type="Node2D"]
 
@@ -50,3 +51,6 @@ position = Vector2(486, 275)
 
 [node name="Pig" parent="." instance=ExtResource("11_kiol3")]
 position = Vector2(548, 198)
+
+[node name="KingPig" parent="." instance=ExtResource("12_0bt6i")]
+position = Vector2(442, 237)
