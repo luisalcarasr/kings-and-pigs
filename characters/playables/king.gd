@@ -2,9 +2,14 @@ extends CharacterBody2D
 
 const SPEED = 100.0
 const JUMP_VELOCITY = -600.0
+const MAX_HEALTH = 3;
+const MAX_DIAMONS = 100;
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+
+var health = MAX_HEALTH;
+var diamonds = 0;
 
 @onready
 var sprite = get_node("AnimatedSprite2D")
@@ -54,4 +59,8 @@ func handle_jump():
 func handle_attack():
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) or Input.is_joy_button_pressed(0, JOY_BUTTON_X):
 		sprite.play("Attack")
+		
+func damange():
+	health -= 1;
+	get_node("Camera2D/CanvasLayer/Label").text = str(health)
 	

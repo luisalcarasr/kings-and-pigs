@@ -21,6 +21,12 @@ window/size/viewport_height=480
 window/size/resizable=false
 window/stretch/aspect="expand"
 
+[gui]
+
+theme/custom_font="res://fonts/pixelify.ttf"
+theme/default_font_antialiasing=0
+theme/default_font_subpixel_positioning=0
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=3
