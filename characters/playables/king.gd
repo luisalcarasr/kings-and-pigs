@@ -1,18 +1,18 @@
 extends CharacterBody2D
 
+# Constants
 const SPEED = 100.0
 const JUMP_VELOCITY = -600.0
 const MAX_HEALTH = 3;
 const MAX_DIAMONS = 100;
 
-# Get the gravity from the project settings to be synced with RigidBody nodes.
+# Configuration
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
+# Properties
 var health = MAX_HEALTH;
 var diamonds = 0;
-
-@onready
-var sprite = get_node("AnimatedSprite2D")
+@onready var sprite = get_node("AnimatedSprite2D")
 
 func _ready():
 	sprite.play("Idle")
@@ -26,6 +26,11 @@ func _physics_process(delta):
 	handle_run()
 	handle_jump()
 	handle_attack()
+	
+	if Input.is_key_pressed(KEY_X):
+		damange()
+	if Input.is_key_pressed(KEY_V):
+		heal()
 
 	move_and_slide()
 	
@@ -60,7 +65,15 @@ func handle_attack():
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) or Input.is_joy_button_pressed(0, JOY_BUTTON_X):
 		sprite.play("Attack")
 		
+func heal(hearts: int = 1):
+	if self.health < self.MAX_HEALTH:
+		if self.health + hearts <= MAX_HEALTH:
+			health += hearts
+		else:
+			health = MAX_HEALTH
+
 func damange():
-	health -= 1;
-	get_node("Camera2D/CanvasLayer/Label").text = str(health)
-	
+	if health >= 0:
+		health -= 1
+	else:
+		health = 0
