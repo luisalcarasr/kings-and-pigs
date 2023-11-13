@@ -17,7 +17,6 @@ func _process(delta):
 		heart.scale = self.sprite.scale
 
 		for i in range(diff):
-			print(hearts.get_child_count() * 22, " ", x)
 			heart.position = Vector2(x + hearts.get_child_count() * 22, y)
 			self.hearts.add_child(heart.duplicate())
 
