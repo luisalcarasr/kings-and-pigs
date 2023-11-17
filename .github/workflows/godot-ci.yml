@@ -8,7 +8,6 @@ env:
 
 jobs:
   export-windows:
-    if: false
     name: Windows Export
     runs-on: ubuntu-20.04
     container:
@@ -26,7 +25,7 @@ jobs:
         run: |
           mkdir -v -p build/windows
           cd $PROJECT_PATH
-          godot -v --export "Windows Desktop" ../build/windows/$EXPORT_NAME.exe
+          godot -v --export-release "Windows" ../build/windows/$EXPORT_NAME.exe
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
@@ -34,7 +33,6 @@ jobs:
           path: build/windows
 
   export-linux:
-    if: false
     name: Linux Export
     runs-on: ubuntu-20.04
     container:
@@ -52,7 +50,7 @@ jobs:
         run: |
           mkdir -v -p build/linux
           cd $PROJECT_PATH
-          godot -v --export "Linux/X11" ../build/linux/$EXPORT_NAME.x86_64
+          godot -v --export-release "Linux/X11" ../build/linux/$EXPORT_NAME.x86_64
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
@@ -77,7 +75,7 @@ jobs:
         run: |
           mkdir -v -p build/web
           cd $PROJECT_PATH
-          godot -v --export "Web" ../build/web/index.html
+          godot -v --export-release "Web" ../build/web/index.html
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
@@ -110,7 +108,7 @@ jobs:
         run: |
           mkdir -v -p build/mac
           cd $PROJECT_PATH
-          godot -v --export "macOS" ../build/mac/$EXPORT_NAME.zip
+          godot -v --export-release "macOS" ../build/mac/$EXPORT_NAME.zip
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
