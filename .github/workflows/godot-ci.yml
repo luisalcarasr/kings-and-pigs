@@ -4,7 +4,6 @@ on: push
 env:
   GODOT_VERSION: 4.1.3
   EXPORT_NAME: king-and-pigs
-  PROJECT_PATH: .
 
 jobs:
   export-windows:
@@ -24,8 +23,7 @@ jobs:
       - name: Windows Build
         run: |
           mkdir -v -p build/windows
-          cd $PROJECT_PATH
-          godot -v --headless --export-release "Windows" ../build/windows/$EXPORT_NAME.exe
+          godot -v --headless --export-release "Windows" build/windows/$EXPORT_NAME.exe
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
@@ -49,8 +47,7 @@ jobs:
       - name: Linux Build
         run: |
           mkdir -v -p build/linux
-          cd $PROJECT_PATH
-          godot -v --headless --export-release "Linux/X11" ../build/linux/$EXPORT_NAME.x86_64
+          godot -v --headless --export-release "Linux/X11" build/linux/$EXPORT_NAME.x86_64
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
@@ -74,8 +71,7 @@ jobs:
       - name: Web Build
         run: |
           mkdir -v -p build/web
-          cd $PROJECT_PATH
-          godot -v --headless --export-release "Web" ../build/web/index.html
+          godot -v --headless --export-release "Web" build/web/index.html
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
@@ -88,7 +84,7 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@releases/v4
         with:
           branch: gh-pages # The branch the action should deploy to.
-          folder: build/web # The folder the action should deploy.
+          folder: ../build/web # The folder the action should deploy.
 
   export-mac:
     name: Mac Export
@@ -107,8 +103,7 @@ jobs:
       - name: Mac Build
         run: |
           mkdir -v -p build/mac
-          cd $PROJECT_PATH
-          godot -v --headless --export-release "macOS" ../build/mac/$EXPORT_NAME.zip
+          godot -v --headless --export-release "macOS" build/mac/$EXPORT_NAME.dmg
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
