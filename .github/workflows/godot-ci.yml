@@ -4,7 +4,7 @@ on: push
 env:
   GODOT_VERSION: 4.1.3
   EXPORT_NAME: king-and-pigs
-  PROJECT_PATH: king-and-pigs
+  PROJECT_PATH: .
 
 jobs:
   export-windows:
