@@ -1,20 +1,20 @@
+mod player;
 use bevy::prelude::*;
 
-#[derive(Component)]
-struct Player;
-
-#[derive(Component)]
+use crate::player::PlayerPlugin;
 
 fn main() {
     App::new()
-        .add_plugins(DefaultPlugins)
-        .add_systems(Startup, setup)
+        /*
+        * `ImagePlugin::default_nearest()` is used to prevent blurring 
+        * of pixel art textures when they are scaled up.
+        */
+        .add_plugins(DefaultPlugins.set(ImagePlugin::default_nearest()))
+        .add_plugins(PlayerPlugin)
+        .add_systems(Startup, setup_camera)
         .run();
 }
 
-fn setup(mut commands: Commands, asset_server: Res<AssetServer>) {
+fn setup_camera(mut commands: Commands) {
     commands.spawn(Camera2d);
-    commands.spawn(Sprite::from_image(
-        asset_server.load("kings-and-pigs.png"),
-    ));
 }
