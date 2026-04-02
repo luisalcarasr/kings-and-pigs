@@ -6,6 +6,7 @@ impl Plugin for PlayerPlugin {
     fn build(&self, app: &mut App) {
         app.add_systems(Startup, setup_player);
         app.add_systems(Update, animate_sprite);
+        app.add_systems(Update, handle_player_movement);
     }
 }
 
@@ -17,6 +18,9 @@ struct AnimationIndices {
 
 #[derive(Component, Deref, DerefMut)]
 struct AnimationTimer(Timer);
+
+#[derive(Component)]
+struct Player;
 
 fn animate_sprite(
     time: Res<Time>,
@@ -55,8 +59,29 @@ fn setup_player(
                 index: animation_indices.first,
             },
         ),
-        Transform::from_scale(Vec3::splat(2.0)),
+        Transform::from_scale(Vec3::splat(10.0)),
         animation_indices,
         AnimationTimer(Timer::from_seconds(0.1, TimerMode::Repeating)),
+        Player,
     ));
+}
+
+fn handle_player_movement(input: Res<ButtonInput<KeyCode>>, time: Res<Time>, mut query: Query<&mut Transform, With<Player>>) {
+    let mut direction = Vec3::ZERO;
+    if input.pressed(KeyCode::Space) {
+        direction.y += 1.0;
+    }
+
+    if input.pressed(KeyCode::ArrowRight) {
+        direction.x += 1.0;
+    }
+    
+    if input.pressed(KeyCode::ArrowLeft) {
+        direction.x -= 1.0;
+    }
+
+    for mut transform in &mut query {
+        transform.translation += direction * time.delta_secs() * 100.0;
+    }
+
 }
